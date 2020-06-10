@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using EarthlyRemedies.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using RestSharp;
 
 
 namespace EarthlyRemedies.Controllers
@@ -18,13 +20,13 @@ namespace EarthlyRemedies.Controllers
     {
       _db = db;
     }
-
+    
     // GET api/Remedies
-    // [HttpGet]
-    // public ActionResult<IEnumerable<Remedy>> Get()
-    // {
-    //   return _db.Remedies.ToList();
-    // }
+    [HttpGet]
+    public ActionResult<IEnumerable<Remedy>> Get()
+    {
+      return _db.Remedies.ToList();
+    }
 
     // POST api/Remedies
     [HttpPost]
@@ -66,45 +68,47 @@ namespace EarthlyRemedies.Controllers
     }
 
     // GET api/Remedies
-    [HttpGet]
-    // public ActionResult<IEnumerable<Remedy>> Get(string name, string details, string ailment, string category, string ingredients, int userId)
-    public ActionResult<Dictionary<string, object>> Get(string name, string details, string ailment, string category, string ingredients, int userId)
-    {
-      var query = _db.Remedies.AsQueryable();
+  //   [HttpGet]
+  //   // public ActionResult<IEnumerable<Remedy>> Get(string name, string details, string ailment, string category, string ingredients, int userId)
+  //   public ActionResult<Dictionary<string, object>> Get(string name, string details, string ailment, string category, string ingredients, int userId)
+  //   {
+  //     var query = _db.Remedies.AsQueryable();
 
-      if (name != null)
-      {
-        query = query.Where(entry => entry.Name == name);
-      }
+  //     if (name != null)
+  //     {
+  //       query = query.Where(entry => entry.Name == name);
+  //     }
 
-      if (details != null)
-      {
-        query = query.Where(entry => entry.Details.Contains(details));
-      }
+  //     if (details != null)
+  //     {
+  //       query = query.Where(entry => entry.Details.Contains(details));
+  //     }
 
-      if (ingredients != null)
-      {
-        query = query.Where(entry => entry.Ingredients.Contains(ingredients));
-      }
+  //     if (ingredients != null)
+  //     {
+  //       query = query.Where(entry => entry.Ingredients.Contains(ingredients));
+  //     }
 
-      if (ailment != null)
-      {
-        query = query.Where(entry => entry.Ailment == ailment);
-      }
+  //     if (ailment != null)
+  //     {
+  //       query = query.Where(entry => entry.Ailment == ailment);
+  //     }
 
-      if (category != null)
-      {
-        query = query.Where(entry => entry.Category == category);
-      }
+  //     if (category != null)
+  //     {
+  //       query = query.Where(entry => entry.Category == category);
+  //     }
 
-      if (userId != 0)
-      {
-        query = query.Where(entry => entry.UserId == userId);
-      }
-      Dictionary<string, object> response = new Dictionary<string, object>();
-      response.Add("categories", EnvironmentVariables.Categories);
-      response.Add("remedies", query);
-      return response;
-    }
+  //     if (userId != 0)
+  //     {
+  //       query = query.Where(entry => entry.UserId == userId);
+  //     }
+  //     Dictionary<string, object> response = new Dictionary<string, object>();
+  //     response.Add("categories", EnvironmentVariables.Categories);
+  //     response.Add("remedies", query);
+  //     return response;
+  //   }
+
+    
   }
 }

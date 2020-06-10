@@ -7,6 +7,5 @@ namespace EarthlyRemedies.Models
     public int RemedyId { get; set; }
     public int UserId { get; set; }
     public string Comments { get; set; }
-
   }
 }
