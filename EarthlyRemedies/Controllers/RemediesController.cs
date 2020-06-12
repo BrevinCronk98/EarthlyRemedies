@@ -43,16 +43,13 @@ namespace EarthlyRemedies.Controllers
       return _db.Remedies.FirstOrDefault(entry => entry.RemedyId == id);
     }
 
-    //PUT api/remedies/userId/remedyId
-    [HttpPut("{userId}/{id}")]
-    public void Put(int userId, int id, [FromBody] Remedy remedy)
+    //PUT api/remedies/remedyId
+    [HttpPut("{id}")]
+    public void Put(int id, [FromBody] Remedy remedy)
     {
-      remedy.RemedyId = id;
-      if (remedy.UserId == userId)
-      {
+        remedy.RemedyId = id;
         _db.Entry(remedy).State = EntityState.Modified;
         _db.SaveChanges();
-      }
     }
 
     //http://localhost:5000/api/remedies/1/9
